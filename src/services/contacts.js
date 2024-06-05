@@ -26,3 +26,34 @@ export const createContact = async ({
   });
   return contact;
 };
+
+export const updateContact = async (contactId, {
+  name,
+  phoneNumber,
+  email,
+  isFavourite,
+  contactType,
+}) => {
+  const rawResult = await Contact.findOneAndUpdate({ id: contactId }, {
+    name,
+    phoneNumber,
+    email,
+    isFavourite,
+    contactType,
+  }, {
+    new: true,
+    includeResultMetadata: true,
+  });
+  if (!rawResult || !rawResult.value) return null;
+  return {
+    student: rawResult.value,
+    isNew: Boolean(rawResult?.lastErrorObject?.upserted),
+  };
+};
+
+export const deleteContact = async (contactId) => {
+  const contact = await Contact.findOneAndDelete({
+    _id: contactId,
+  });
+  return contact;
+};
