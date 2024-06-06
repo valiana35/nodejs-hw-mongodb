@@ -10,39 +10,16 @@ export const getContactById = async (contactId) => {
   return contact;
 };
 
-export const createContact = async ({
-  name,
-  phoneNumber,
-  email,
-  isFavourite,
-  contactType,
-}) => {
-  const contact = await Contact.create({
-    name,
-    phoneNumber,
-    email,
-    isFavourite,
-    contactType,
-  });
+export const createContact = async (payload) => {
+  const contact = await Contact.create(payload);
   return contact;
 };
 
-export const updateContact = async (contactId, {
-  name,
-  phoneNumber,
-  email,
-  isFavourite,
-  contactType,
-}) => {
-  const rawResult = await Contact.findOneAndUpdate({ id: contactId }, {
-    name,
-    phoneNumber,
-    email,
-    isFavourite,
-    contactType,
-  }, {
+export const updateContact = async (contactId, payload, options = {}) => {
+  const rawResult = await Contact.findOneAndUpdate({ id: contactId }, payload, {
     new: true,
     includeResultMetadata: true,
+    ...options,
   });
   if (!rawResult || !rawResult.value) return null;
   return {
