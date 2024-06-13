@@ -5,7 +5,11 @@ const parseType = (type) => {
   if (isType(type)) return type;
 };
 
-const parseIsFavourite = (isFavourite) => isFavourite === true;
+const parseIsFavourite = (isFavourite) => {
+    const isBoolean = typeof isFavourite === 'boolean';
+    if (!isBoolean) return;
+    return isFavourite;
+}
 
 export const parseFilterParams = (query) => {
     const { contactType, isFavourite } = query;
