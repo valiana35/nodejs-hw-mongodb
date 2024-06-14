@@ -8,9 +8,15 @@ import {
 } from '../controllers/contacts.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { validateBody } from '../middlewares/validateBody.js';
-import { createContactsSchema, updateContactsSchema } from '../validation/contacts.js';
+import {
+  createContactsSchema,
+  updateContactsSchema,
+} from '../validation/contacts.js';
+import validateMongoId from '../middlewares/validateMongoId.js';
 
 const router = Router();
+
+router.use('/:contactId', validateMongoId('contactId'));
 
 router.get('/', ctrlWrapper(getContactsController));
 
