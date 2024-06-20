@@ -6,7 +6,6 @@ export const createContactsSchema = Joi.object({
     email: Joi.string().min(3).max(20).email(),
     isFavourite: Joi.boolean().default(false),
     contactType: Joi.string().min(3).max(20).valid('work', 'home', 'personal'),
-    userId: Joi.string(). required(),
 });
 
 export const updateContactsSchema = Joi.object({
