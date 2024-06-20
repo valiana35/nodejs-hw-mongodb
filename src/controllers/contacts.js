@@ -17,7 +17,7 @@ export const getContactsController = async (req, res, next) => {
     next(createHttpError(403, 'You do not have permission to access this contact!'));
     return;
   }
-  
+
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query);
   const filter = parseFilterParams(req.query)
@@ -28,6 +28,7 @@ export const getContactsController = async (req, res, next) => {
     sortBy,
     sortOrder,
     filter,
+    userId,
   });
 
   res.status(200).json({
@@ -67,7 +68,8 @@ export const getContactByIdController = async (req, res, next) => {
 };
 
 export const createContactController = async (req, res) => {
-  const contact = await createContact({ ...req.body, userId: req.user._id });
+  const userId = req.user._id;
+  const contact = await createContact(req.body, userId);
 
   res.status(201).json({
     status: 201,
@@ -84,7 +86,7 @@ export const patchContactController = async (req, res, next) => {
     return;
   }
 
-  const result = await updateContact(contactId, req.body);
+  const result = await updateContact(contactId, req.body, userId);
   if (!result) {
     next(createHttpError(404, 'Contact not found'));
     return;
@@ -104,7 +106,7 @@ export const deleteContactController = async (req, res, next) => {
     return;
   }
 
-  const contact = await deleteContact(contactId);
+  const contact = await deleteContact(contactId, userId);
   if (!contact) {
     next(createHttpError(404, 'Contact not found'));
     return;
