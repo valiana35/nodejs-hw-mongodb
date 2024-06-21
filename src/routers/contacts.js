@@ -19,7 +19,7 @@ const router = Router();
 
 router.use('/:contactId', validateMongoId('contactId'));
 
-router.get(authenticate);
+router.use(authenticate);
 
 router.get('/', ctrlWrapper(getContactsController));
 
