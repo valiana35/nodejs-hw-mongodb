@@ -14,8 +14,6 @@ import {
 } from '../validation/contacts.js';
 import validateMongoId from '../middlewares/validateMongoId.js';
 import { authenticate } from '../middlewares/authenticate.js';
-import { ROLE } from '../constants/constans.js';
-import { checkRoles } from '../middlewares/checkRoles.js';
 
 const router = Router();
 
@@ -25,7 +23,7 @@ router.get(authenticate);
 
 router.get('/', ctrlWrapper(getContactsController));
 
-router.get('/:contactId', checkRoles(ROLE.USER), ctrlWrapper(getContactByIdController));
+router.get('/:contactId', ctrlWrapper(getContactByIdController));
 
 router.post(
   '/',
