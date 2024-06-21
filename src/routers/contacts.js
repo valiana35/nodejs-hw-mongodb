@@ -23,24 +23,22 @@ router.use('/:contactId', validateMongoId('contactId'));
 
 router.get(authenticate);
 
-router.get('/', checkRoles(ROLE.USER), ctrlWrapper(getContactsController));
+router.get('/', ctrlWrapper(getContactsController));
 
 router.get('/:contactId', checkRoles(ROLE.USER), ctrlWrapper(getContactByIdController));
 
 router.post(
   '/',
-  checkRoles(ROLE.USER),
   validateBody(createContactsSchema),
   ctrlWrapper(createContactController),
 );
 
 router.patch(
   '/:contactId',
-  checkRoles(ROLE.USER),
   validateBody(updateContactsSchema),
   ctrlWrapper(patchContactController),
 );
 
-router.delete('/:contactId', checkRoles(ROLE.USER), ctrlWrapper(deleteContactController));
+router.delete('/:contactId', ctrlWrapper(deleteContactController));
 
 export default router;
