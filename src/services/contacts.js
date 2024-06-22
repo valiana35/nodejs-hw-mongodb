@@ -47,8 +47,8 @@ export const getContactById = async (contactId, userId) => {
   return contact;
 };
 
-export const createContact = async (payload) => {
-  const contact = await Contact.create(payload);
+export const createContact = async (payload, userId) => {
+  const contact = await Contact.create({ ...payload, userId });
   return contact;
 };
 
@@ -59,7 +59,7 @@ export const updateContact = async (
   options = {},
 ) => {
   const rawResult = await Contact.findOneAndUpdate(
-    { _id: contactId, userId, },
+    { _id: contactId, userId },
     payload,
     {
       new: true,
