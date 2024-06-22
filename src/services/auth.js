@@ -23,10 +23,10 @@ export const loginUser = async (payload) => {
     throw createHttpError(404, 'User not found');
   }
 
-  const isEqual = await bcrypt.compare(payload.password, user.password);
-  if (!isEqual) {
-    throw createHttpError(401, 'Unauthorized');
-  }
+  // const isEqual = await bcrypt.compare(payload.password, user.password);
+  // if (!isEqual) {
+  //   throw createHttpError(401, 'Unauthorized');
+  // }
 
   await Session.deleteOne({ userId: user._id });
 
