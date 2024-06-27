@@ -141,7 +141,7 @@ export const requestResetToken = async (email) => {
   }
 };
 
-export const resetPassword = async (payload) => {
+export const resetPwd = async (payload) => {
   let entries;
 
   try {
