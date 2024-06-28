@@ -2,7 +2,6 @@ import path from 'node:path';
 
 export const ENV_VARS = {
   PORT: 'PORT',
-  JWT_SECRET: 'JWT_SECRET',
   APP_DOMAIN: 'APP_DOMAIN',
 };
 
@@ -26,6 +25,7 @@ export const SMTP = {
   SMTP_PORT: 'SMTP_PORT',
   SMTP_USER: 'SMTP_USER',
   SMTP_PASSWORD: 'SMTP_PASSWORD',
+  SMTR_FROM: 'SMTR_FROM',
 };
 
 export const TEMPLATES_DIR = path.join(process.cwd(), 'src', 'templates');
