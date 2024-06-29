@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 import { Session } from '../db/session.js';
 import {
+  ENV_VARS,
   FIFTEEN_MINUTES,
   SMTP,
   TEMPLATES_DIR,
@@ -125,7 +126,7 @@ export const requestResetToken = async (email) => {
   const template = handlebars.compile(templateSource);
   const html = template({
     name: user.name,
-    link: `${env('APP_DOMAIN')}/reset-password?token=${resetToken}`,
+    link: `${env(ENV_VARS.APP_DOMAIN)}/reset-password?token=${resetToken}`,
   });
 
   try {
@@ -145,7 +146,7 @@ export const resetPwd = async (payload) => {
   let entries;
 
   try {
-    entries = jwt.verify(payload.token, env('JWT_SECRET'));
+    entries = jwt.verify(payload.token, env(ENV_VARS.JWT_SECRET));
   } catch (error) {
     if (error instanceof Error) throw createHttpError(401, error.message);
     throw error;
