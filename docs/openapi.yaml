@@ -13,7 +13,7 @@ tags:
   - name: Auth
     description: Auth operations.
 servers:
-  - url: https://contacts-app5-l2s8.onrender.com
+  - url: https://contacts-app6-mjme.onrender.com
 paths:
   /contacts:
     get:
