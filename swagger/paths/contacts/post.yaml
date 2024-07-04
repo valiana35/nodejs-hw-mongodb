@@ -1,0 +1,81 @@
+tags:
+  - Contacts
+summary: Create contact
+operationId: createContact
+description: 'Create a contact with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - phoneNumber
+        properties:
+          name:
+            description: "Contact's name"
+            type: string
+            example: "Lana Rey"
+          phoneNumber:
+            description: "Contact's phoneNumber"
+            type: string
+            example: "+3805643753341"
+          email:
+            description: "Contact's email"
+            type: string
+            example: "lanarey@mail.com"
+          isFavourite:
+            description: "Whether is contact favourite"
+            type: boolean
+            example: false
+          contactType:
+            description: "Contact's type. Should be work, home or personal"
+            type: string
+            enum: ['work', 'home', 'personal']
+            default: "personal"
+            example: "work"
+          userId:
+            description: "Contact's userId"
+            type: string
+            example: "6675d472b43d599e97812382"
+          photo:
+            description: "Contact's photo"
+            type: string
+            format: binary
+          _id:
+            description: "Contact's id"
+            type: string
+            example: "66862b54586340d4eb6b0d30"
+          createdAt:
+            description: "Contact creation time"
+            type: string
+            example: "2024-07-04T04:55:48.158Z"
+          updatedAt:
+            description: "Contact update time"
+            type: string
+            example: "2024-07-04T04:55:48.158Z"
+responses:
+  '201':
+    description: Creates a contact
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a contact!
+            data:
+              type: object
+              $ref: '../../components/schemas/contact.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'

@@ -1,0 +1,77 @@
+tags:
+  - Contacts
+summary: Update contact by id
+operationId: patchContact
+description: 'Update contact by id'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '66780ea6f56d6dd346e8c7f2'
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            description: "Contact's name"
+            type: string
+            example: "Lana Rey"
+          phoneNumber:
+            description: "Contact's phoneNumber"
+            type: string
+            example: "+3805643753341"
+          email:
+            description: "Contact's email"
+            type: string
+            example: "lanarey@mail.com"
+          isFavourite:
+            description: "Whether is contact favourite"
+            type: boolean
+            example: false
+          contactType:
+            description: "Contact's type. Should be work, home or personal"
+            type: string
+            enum: ['work', 'home', 'personal']
+            default: "personal"
+            example: "work"
+          userId:
+            description: "Contact's userId"
+            type: string
+            example: "6675d472b43d599e97812382"
+          photo:
+            description: "Contact's photo"
+            type: string
+            format: binary
+          _id:
+            description: "Contact's id"
+            type: string
+            example: "66862b54586340d4eb6b0d30"
+responses:
+  '200':
+    description: 'Successfully patched a contact'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully patched a contact!'
+            data:
+              type: object
+              $ref: '../../../components/schemas/contact.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
