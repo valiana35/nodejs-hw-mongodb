@@ -51,9 +51,9 @@
             "in": "query",
             "name": "perPage",
             "schema": {
-              "type": "integer",
-              "example": 10
-            }
+              "type": "integer"
+            },
+            "example": 10
           },
           {
             "in": "query",
@@ -61,7 +61,6 @@
             "schema": {
               "type": "string",
               "default": "_id",
-              "example": "name",
               "enum": [
                 "_id",
                 "name",
@@ -71,6 +70,7 @@
                 "contactType"
               ]
             },
+            "example": "name",
             "description": "All contacts's fields can be mentioned. Default value - _id"
           },
           {
@@ -81,17 +81,17 @@
               "enum": [
                 "asc",
                 "desc"
-              ],
-              "example": "asc"
-            }
+              ]
+            },
+            "example": "asc"
           },
           {
             "in": "query",
             "name": "isFavourite",
             "schema": {
-              "type": "boolean",
-              "example": true
-            }
+              "type": "boolean"
+            },
+            "example": true
           },
           {
             "in": "query",
@@ -103,17 +103,9 @@
                 "home",
                 "personal"
               ],
-              "default": "personal",
-              "example": "home"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter",
-            "schema": {
-              "type": "boolean",
-              "example": true
-            }
+              "default": "personal"
+            },
+            "example": "work"
           }
         ],
         "responses": {
@@ -244,30 +236,10 @@
                     "default": "personal",
                     "example": "work"
                   },
-                  "userId": {
-                    "description": "Contact's userId",
-                    "type": "string",
-                    "example": "6675d472b43d599e97812382"
-                  },
                   "photo": {
                     "description": "Contact's photo",
                     "type": "string",
                     "format": "binary"
-                  },
-                  "_id": {
-                    "description": "Contact's id",
-                    "type": "string",
-                    "example": "66862b54586340d4eb6b0d30"
-                  },
-                  "createdAt": {
-                    "description": "Contact creation time",
-                    "type": "string",
-                    "example": "2024-07-04T04:55:48.158Z"
-                  },
-                  "updatedAt": {
-                    "description": "Contact update time",
-                    "type": "string",
-                    "example": "2024-07-04T04:55:48.158Z"
                   }
                 }
               }
@@ -364,6 +336,9 @@
               }
             }
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           }
@@ -429,20 +404,10 @@
                     "default": "personal",
                     "example": "work"
                   },
-                  "userId": {
-                    "description": "Contact's userId",
-                    "type": "string",
-                    "example": "6675d472b43d599e97812382"
-                  },
                   "photo": {
                     "description": "Contact's photo",
                     "type": "string",
                     "format": "binary"
-                  },
-                  "_id": {
-                    "description": "Contact's id",
-                    "type": "string",
-                    "example": "66862b54586340d4eb6b0d30"
                   }
                 }
               }
@@ -479,6 +444,9 @@
               }
             }
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           }
@@ -510,6 +478,9 @@
         "responses": {
           "204": {
             "description": "Deleted contact by id"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
           },
           "404": {
             "$ref": "#/components/responses/404"

@@ -14,11 +14,15 @@ import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
 import { env } from '../utils/env.js';
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 
-export const getContactsController = async (req, res) => {
+export const getContactsController = async (req, res, next) => {
   const userId = req.user._id;
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query);
   const filter = parseFilterParams(req.query);
+
+  if (!userId) {
+    next(createHttpError(401));
+  }
 
   const contacts = await getAllContacts({
     userId,
