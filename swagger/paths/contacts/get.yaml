@@ -41,14 +41,11 @@ parameters:
     name: isFavourite
     schema:
       type: boolean
-    example: false
   - in: query
     name: contactType
     schema:
       type: string
       enum: ['work', 'home', 'personal']
-      default: 'personal'
-    example: 'personal'
 responses:
   '200':
     description: Successfully found contacts!

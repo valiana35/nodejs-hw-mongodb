@@ -234,7 +234,7 @@
                       "personal"
                     ],
                     "default": "personal",
-                    "example": "work"
+                    "example": "personal"
                   },
                   "photo": {
                     "description": "Contact's photo",
