@@ -91,7 +91,7 @@
             "schema": {
               "type": "boolean"
             },
-            "example": true
+            "example": false
           },
           {
             "in": "query",
@@ -105,7 +105,7 @@
               ],
               "default": "personal"
             },
-            "example": "work"
+            "example": "personal"
           }
         ],
         "responses": {
